@@ -13,5 +13,24 @@ class SecondTabController < UIViewController
     @label.text = 'Second Tab Controller'
     @label.frame = [[50,50],[250,50]]
     view.addSubview(@label)
+
+    # right
+    recognizer = UISwipeGestureRecognizer.alloc.initWithTarget(self, action:'handle_swipe:')
+    self.view.addGestureRecognizer(recognizer)
+    # left
+    recognizer = UISwipeGestureRecognizer.alloc.initWithTarget(self, action:'handle_swipe:')
+    recognizer.direction = UISwipeGestureRecognizerDirectionLeft
+    self.view.addGestureRecognizer(recognizer)        
+
+
   end
+
+
+  def handle_swipe(sender)
+   
+    if(sender.direction == UISwipeGestureRecognizerDirectionLeft)
+      p "Swiped left"
+      $tabbar.selectedIndex = 0
+    end
+  end  
 end
